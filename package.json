@@ -1,0 +1,22 @@
+{
+  "name": "hackathon-art-thief",
+  "version": "1.0.0",
+  "description": "Rewriting history using your skills of forgery",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"cd art-thief-ui && npm run dev\" \"cd ai-gallery && npm run dev\"",
+    "init": "concurrently \"cd art-thief-ui && npm install\" \"cd ai-gallery && npm install\""
+  },
+  "keywords": [
+    "the",
+    "art",
+    "thief",
+    "hackathon",
+    "game",
+    "tool",
+    "forgery",
+    "artwork"
+  ],
+  "author": "team :)",
+  "license": "ISC"
+}
