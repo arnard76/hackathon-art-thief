@@ -10,7 +10,7 @@ const port = process.env.PORT || 3001;
 
 const fs = require("node:fs");
 
-app.use(cors());
+app.use(cors({ origin: "*" }));
 
 app.options("/", function (req, res) {
   res.header("Access-Control-Allow-Origin", "*");
