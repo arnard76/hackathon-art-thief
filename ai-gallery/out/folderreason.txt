@@ -1,0 +1,1 @@
+This folder exists to store the images after they are generated before sending the image back as a response from the API.
