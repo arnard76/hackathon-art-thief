@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"cd art-thief-ui && npm run dev\" \"cd ai-gallery && npm run dev\"",
-    "init": "concurrently \"cd art-thief-ui && npm install\" \"cd ai-gallery && npm install\""
+    "init": "npm i concurrently && cd art-thief-ui && npm i && cd ../ai-gallery && npm i"
   },
   "keywords": [
     "the",
@@ -18,5 +18,8 @@
     "artwork"
   ],
   "author": "team :)",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.1"
+  }
 }
