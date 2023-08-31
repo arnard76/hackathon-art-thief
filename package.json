@@ -4,7 +4,7 @@
   "description": "Rewriting history using your skills of forgery",
   "main": "index.js",
   "scripts": {
-    "init": "npm i concurrently && cd art-thief-ui && npm i && npm build && cd ../ai-gallery && npm i",
+    "init": "npm i concurrently && cd art-thief-ui && npm i && npm run build && cd ../ai-gallery && npm i",
     "dev": "concurrently \"cd art-thief-ui && npm run dev\" \"cd ai-gallery && npm run dev\"",
     "start": "concurrently \"cd art-thief-ui && node build/index.js\" \"cd ai-gallery && npm start\""
   },
