@@ -1,12 +1,12 @@
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const express = require("express");
-const stability = require('./utils/stability')
+const stability = require("./utils/stability");
 
 require("dotenv").config();
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 const fs = require("node:fs");
 
@@ -16,7 +16,13 @@ app.post(
   "/",
   bodyParser.raw({ type: ["image/jpeg", "image/png"], limit: "5mb" }),
   async (req, res) => {
-    const response = await stability.imageToImage(req.body, req.query.prompt, req.query.image_strength, req.query.cfg_scale, req.query.style_preset)
+    const response = await stability.imageToImage(
+      req.body,
+      req.query.prompt,
+      req.query.image_strength,
+      req.query.cfg_scale,
+      req.query.style_preset
+    );
 
     if (!response.ok) {
       throw new Error(`Non-200 response: ${await response.text()}`);
@@ -31,7 +37,9 @@ app.post(
       );
     });
 
-    res.sendFile(`${__dirname}/out/img2img_${responseJSON.artifacts[0].seed}.png`);
+    res.sendFile(
+      `${__dirname}/out/img2img_${responseJSON.artifacts[0].seed}.png`
+    );
   }
 );
 

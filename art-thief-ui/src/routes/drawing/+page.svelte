@@ -5,6 +5,7 @@
   import Button from "$lib/Button.svelte";
   import { goto } from "$app/navigation";
   import currentArtworks, { selectedImage } from "$lib/stolenImages";
+  import { PUBLIC_API_URL } from "$env/static/public";
   //   import { onMount } from "svelte";
 
   export let drawingCanvas = undefined;
@@ -38,7 +39,8 @@
     });
     console.log(prompt);
     const res = await fetch(
-      "http://localhost:3001/?" +
+      PUBLIC_API_URL +
+        "?" +
         new URLSearchParams({
           prompt,
         }),
