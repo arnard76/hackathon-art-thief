@@ -12,6 +12,16 @@ const fs = require("node:fs");
 
 app.use(cors());
 
+app.options("/", function (req, res) {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://hackathon-art-thief-ui.onrender.com,http://localhost:3001"
+  );
+  res.setHeader("Access-Control-Allow-Methods", "*");
+  res.setHeader("Access-Control-Allow-Headers", "*");
+  res.end();
+});
+
 app.post(
   "/",
   bodyParser.raw({ type: ["image/jpeg", "image/png"], limit: "5mb" }),
