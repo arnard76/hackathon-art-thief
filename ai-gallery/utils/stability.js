@@ -2,23 +2,26 @@ const stream = require("stream");
 const FormData = require("form-data");
 const fetch = require("node-fetch");
 
-const STABILITY_API_BASE_URL = "https://api.stability.ai/v1/";
-const DEFAULT_ENGINE_ID = "stable-diffusion-v1-6";
+const STABILITY_API_BASE_URL = "https://api.stability.ai";
+const DEFAULT_ENGINE_ID = "stable-diffusion-512-v2-1";
+
 const getStabilityApiUrl = async () => {
   const engines = (
-    await fetch(`${STABILITY_API_BASE_URL}/v1/engines/list`, {
-      headers: {
-        Accept: "application/json",
-        Authorization: `Bearer ${process.env.API_KEY}`,
-      },
-    })
+    await (
+      await fetch(`${STABILITY_API_BASE_URL}/v1/engines/list`, {
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${process.env.API_KEY}`,
+        },
+      })
+    ).json()
   ).map((engine) => engine.id);
 
   const engineToUse = engines.includes(DEFAULT_ENGINE_ID)
     ? DEFAULT_ENGINE_ID
     : engines[0];
 
-  return `${STABILITY_API_BASE_URL}/v1/generation/${engineToUse}/image-to-image/`;
+  return `${STABILITY_API_BASE_URL}/v1/generation/${engineToUse}/image-to-image`;
 };
 
 const imageToImage = async (
